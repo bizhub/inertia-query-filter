@@ -1,0 +1,27 @@
+{
+    "name": "bizhub/inertia-query-filter",
+    "description": "Laravel + Inertiajs query filters",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Lex van der Woude",
+        "email": "lex@bizhub.co.nz"
+      }
+    ],
+    "require": {
+        "inertiajs/inertia-laravel": "^0.3.3"
+    },
+    "autoload": {
+      "psr-4": {
+        "Bizhub\\QueryFilter\\": "src"
+      }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bizhub\\QueryFilter\\QueryFilterServiceProvider"
+            ]
+        }
+    }
+  }
