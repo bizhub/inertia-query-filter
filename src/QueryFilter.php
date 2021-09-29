@@ -17,12 +17,19 @@ abstract class QueryFilter
     /**
      * Apply filter methods
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  array  $defaults
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function apply(Builder $builder)
+    public function apply(Builder $builder, $defaults = []): Builder
     {
         $this->builder = $builder;
+
+        request()->merge(
+            array_filter($defaults, function($name){
+                return ! request()->has($name);
+            }, ARRAY_FILTER_USE_KEY)
+        );
 
         $names = [];
         foreach (request()->all() as $name => $value) {

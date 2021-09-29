@@ -4,18 +4,18 @@
     "type": "library",
     "license": "MIT",
     "authors": [
-      {
-        "name": "Lex van der Woude",
-        "email": "lex@bizhub.co.nz"
-      }
+        {
+            "name": "Lex van der Woude",
+            "email": "lex@bizhub.co.nz"
+        }
     ],
     "require": {
         "inertiajs/inertia-laravel": "^0.3.3|^0.4.0"
     },
     "autoload": {
-      "psr-4": {
-        "Bizhub\\QueryFilter\\": "src"
-      }
+        "psr-4": {
+            "Bizhub\\QueryFilter\\": "src"
+        }
     },
     "extra": {
         "laravel": {
@@ -24,4 +24,4 @@
             ]
         }
     }
-  }
+}
