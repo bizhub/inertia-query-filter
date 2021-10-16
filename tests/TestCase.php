@@ -3,9 +3,15 @@
 namespace Bizhub\QueryFilter\Tests;
 
 use Bizhub\QueryFilter\QueryFilterServiceProvider;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
+use \Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends Orchestra
 {
+    use RefreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -19,5 +25,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     protected function getEnvironmentSetUp($app)
-    {}
+    {
+        Schema::dropAllTables();
+
+        Schema::create('test_models', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
 }

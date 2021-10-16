@@ -13,8 +13,16 @@ trait Filterable
      */
     public function scopeFilter($query, $defaults = [])
     {
-        $defaultClassName = '\\App\\QueryFilters\\' . class_basename($this) . 'Filter';
+        return app($this->queryFilterName())->apply($query, $defaults);
+    }
 
-        return (new $defaultClassName)->apply($query, $defaults);
+    /**
+     * Get query filter class name
+     *
+     * @return string
+     */
+    protected function queryFilterName(): string
+    {
+        return '\\App\\QueryFilters\\' . class_basename($this) . 'Filter';
     }
 }
