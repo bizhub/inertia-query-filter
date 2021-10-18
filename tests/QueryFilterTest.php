@@ -8,21 +8,33 @@ use Mockery\MockInterface;
 class QueryFilterTest extends TestCase
 {
     /** @test */
-    public function it_calls_correct_query_method()
+    public function it_calls_correct_filter_method()
     {
         request()->merge([
             'name' => 'Lex'
         ]);
 
-        $queryFilter = new DummyQueryFilter;
-        $queryFilter->apply($this->eloquentBuilderMock());
+        $this->partialMock(DummyQueryFilter::class, function(MockInterface $mock){
+            $mock
+                ->shouldReceive('name')
+                ->withArgs(['Lex'])
+                ->once();
+        });
+
+        app(DummyQueryFilter::class)->apply($this->eloquentBuilderMock());
     }
 
     /** @test */
     public function it_can_use_default_filters()
     {
-        $queryFilter = new DummyQueryFilter;
-        $queryFilter->apply($this->eloquentBuilderMock(), [
+        $this->partialMock(DummyQueryFilter::class, function(MockInterface $mock){
+            $mock
+                ->shouldReceive('name')
+                ->withArgs(['Lex'])
+                ->once();
+        });
+
+        app(DummyQueryFilter::class)->apply($this->eloquentBuilderMock(), [
             'name' => 'Lex'
         ]);
     }
@@ -34,11 +46,6 @@ class QueryFilterTest extends TestCase
      */
     protected function eloquentBuilderMock()
     {
-        return $this->mock(Builder::class, function(MockInterface $mock){
-            $mock
-                ->shouldReceive('where')
-                ->withArgs(['name', 'Lex'])
-                ->once();
-        });
+        return $this->mock(Builder::class);
     }
 }

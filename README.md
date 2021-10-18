@@ -1,5 +1,7 @@
 # Inertia Query Filter
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bizhub/inertia-query-filter.svg?style=flat-square)](https://packagist.org/packages/bizhub/inertia-query-filter)
+
 ## Install
 
 ``` bash

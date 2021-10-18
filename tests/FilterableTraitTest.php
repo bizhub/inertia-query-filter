@@ -3,6 +3,7 @@
 namespace Bizhub\QueryFilter\Tests;
 
 use Bizhub\QueryFilter\Tests\Model\TestModel;
+use Inertia\Inertia;
 
 class FilterableTraitTest extends TestCase
 {
@@ -20,5 +21,6 @@ class FilterableTraitTest extends TestCase
 
         $this->assertCount(1, $results);
         $this->assertEquals('Foo', $results[0]->name);
+        $this->assertEquals('Foo', Inertia::getShared('filters')['name']);
     }
 }
